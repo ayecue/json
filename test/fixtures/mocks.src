@@ -1,0 +1,39 @@
+myTestFn = function
+  return "test"
+end function
+
+myTestObject = {
+  "bool": false,
+  "number": 123,
+  "float": 1.25,
+  "string": "foo",
+  "fn": @myTestFn,
+  "list": [
+    "item1",
+    {
+      "key": "value"
+    },
+    ["subItem1"]
+  ],
+  "map": {
+    "subMap": {
+      "key": "value"
+    },
+    "subList": ["subItem1"]
+  }
+}
+
+simpleTestObject = {
+  "bool": 0,
+  "number": 123,
+  "float": 1.25,
+  "string": "foo",
+}
+
+myTestList = [
+  "item1",
+  {
+    "key": "value"
+  },
+  ["subItem1"]
+]

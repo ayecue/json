@@ -1,0 +1,78 @@
+import_code("/root/json.src":"../src/json.src")
+import_code("/":"./fixtures/mocks.src")
+
+Tests = {}
+
+Tests["Stringify object"] = function
+  json = JSON.stringify(myTestObject)
+
+  print(json)
+end function
+
+Tests["Stringify list"] = function
+  json = JSON.stringify(myTestList)
+
+  print(json)
+end function
+
+Tests["Stringify string"] = function
+  json = JSON.stringify("test")
+
+  print(json)
+end function
+
+Tests["Stringify number"] = function
+  json = JSON.stringify(12345)
+
+  print(json)
+end function
+
+Tests["Parse stringified object"] = function
+  json = JSON.stringify(myTestObject)
+
+  print(JSON.parse(json))
+end function
+
+Tests["Parse stringified list"] = function
+  json = JSON.stringify(myTestList)
+
+  print(JSON.parse(json))
+end function
+
+Tests["Parse stringified string"] = function
+  json = JSON.stringify("test")
+
+  print(JSON.parse(json))
+end function
+
+Tests["Parse stringified number"] = function
+  json = JSON.stringify(12345)
+
+  print(JSON.parse(json))
+end function
+
+Tests["Parse stringified object and compare to original map"] = function
+  json = JSON.stringify(simpleTestObject)
+  parsedObj = JSON.parse(json)
+
+  print(simpleTestObject == parsedObj)
+end function
+
+Tests["Write/Read json file"] = function
+  rshell = get_shell("root", "test")
+  json = JSON.stringify(myTestObject)
+
+  rshell.host_computer.touch("/root", "file.json")
+  testFile = rshell.host_computer.File("/root/file.json")
+
+  testFile.set_content(json)
+
+  parsedObj = JSON.parse(testFile.get_content)
+
+  print(parsedObj)
+end function
+
+for item in Tests
+  print("Running: " + item.key)
+  item.value()
+end for

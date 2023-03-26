@@ -1,0 +1,12 @@
+import_code("/root/stringify/handler.src":"./stringify/handler.src")
+
+stringify = function(obj)
+  objType = typeof(@obj)
+
+  if (StringifyHandler.hasIndex(objType)) then
+    handler = @StringifyHandler[objType]
+    return handler(@obj, @stringify)
+  end if
+
+  return StringifyHandler.default(obj)
+end function
