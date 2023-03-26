@@ -45,7 +45,7 @@ Tokenizer.nextIndex = function(offset = 1)
 end function
 
 Tokenizer.isStringEscaped = function
-  return CHARACTER.SLASH == self.itemAt(-1)
+  return CHARACTER.BACKSLASH == self.itemAt(-1)
 end function
 
 Tokenizer.isIdentifierStart = function(value)
@@ -201,9 +201,7 @@ Tokenizer.scanStringLiteral = function
       line = beginLine
       return self.raise("Unexpected new line at line " + line + ".", line)
     else if (CHARACTER.QUOTE == code) then
-      if (self.isStringEscaped) then
-        self.nextIndex
-      else
+      if (not self.isStringEscaped) then
         break
       end if
     else if (not self.isNotEOF) then
@@ -214,7 +212,7 @@ Tokenizer.scanStringLiteral = function
 
   self.nextIndex
   value = self.jsonStr[stringStart: self.index - 1]
-  value = value.replace(CHARACTER.SLASH + CHARACTER.QUOTE, CHARACTER.QUOTE)
+  value = value.replace(CHARACTER.BACKSLASH + CHARACTER.QUOTE, CHARACTER.QUOTE)
 
   return {
     "type": TOKEN_TYPE.StringLiteral,

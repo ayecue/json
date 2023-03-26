@@ -21,6 +21,7 @@ CHARACTER = {
   "DOT": char(46),
   "COMMA": char(44),
   "SLASH": char(47),
+  "BACKSLASH": char(92),
   "LETTER_E": char(69),
   "LETTER_e": char(101),
   "MINUS": char(45),

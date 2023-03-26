@@ -6,7 +6,7 @@ myTestObject = {
   "bool": false,
   "number": 123,
   "float": 1.25,
-  "string": "foo",
+  "string": "foo ""mystring""",
   "fn": @myTestFn,
   "list": [
     "item1",

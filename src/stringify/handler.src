@@ -3,7 +3,7 @@ import_code("/root/character.src":"../character.src")
 StringifyHandler = {}
 
 StringifyHandler["string"] = function(value, callback)
-  return CHARACTER.QUOTE + value + CHARACTER.QUOTE
+  return CHARACTER.QUOTE + value.replace(CHARACTER.QUOTE, CHARACTER.BACKSLASH + CHARACTER.QUOTE) + CHARACTER.QUOTE
 end function
 
 StringifyHandler["number"] = function(value, callback)
