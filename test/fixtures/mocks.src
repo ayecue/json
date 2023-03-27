@@ -28,6 +28,19 @@ simpleTestObject = {
   "number": 123,
   "float": 1.25,
   "string": "foo",
+  "list": [
+    "item1",
+    {
+      "key": "value"
+    },
+    ["subItem1"]
+  ],
+  "map": {
+    "subMap": {
+      "key": "value"
+    },
+    "subList": ["subItem1"]
+  }
 }
 
 myTestList = [

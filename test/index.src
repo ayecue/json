@@ -1,78 +1,84 @@
 import_code("/root/json.src":"../src/json.src")
 import_code("/":"./fixtures/mocks.src")
+import_code("/":"./utils/index.src")
 
-Tests = {}
+description("Strinify", function
+  test("object", function
+    json = JSON.stringify(myTestObject)
 
-Tests["Stringify object"] = function
-  json = JSON.stringify(myTestObject)
+    return typeof(json) == "string"
+  end function)
 
-  print(json)
-end function
+  test("list", function
+    json = JSON.stringify(myTestList)
 
-Tests["Stringify list"] = function
-  json = JSON.stringify(myTestList)
+    return typeof(json) == "string"
+  end function)
 
-  print(json)
-end function
+  test("string", function
+    json = JSON.stringify("test")
 
-Tests["Stringify string"] = function
-  json = JSON.stringify("test")
+    return typeof(json) == "string"
+  end function)
 
-  print(json)
-end function
+  test("number", function
+    json = JSON.stringify(12345)
 
-Tests["Stringify number"] = function
-  json = JSON.stringify(12345)
+    return typeof(json) == "string"
+  end function)
+end function)
 
-  print(json)
-end function
+description("Parse", function
+  test("object", function
+    json = JSON.stringify(myTestObject)
 
-Tests["Parse stringified object"] = function
-  json = JSON.stringify(myTestObject)
+    return typeof(JSON.parse(json)) == "map"
+  end function)
 
-  print(JSON.parse(json))
-end function
+  test("list", function
+    json = JSON.stringify(myTestList)
 
-Tests["Parse stringified list"] = function
-  json = JSON.stringify(myTestList)
+    return typeof(JSON.parse(json)) == "list"
+  end function)
 
-  print(JSON.parse(json))
-end function
+  test("string", function
+    json = JSON.stringify("test")
 
-Tests["Parse stringified string"] = function
-  json = JSON.stringify("test")
+    return typeof(JSON.parse(json)) == "string"
+  end function)
 
-  print(JSON.parse(json))
-end function
+  test("number", function
+    json = JSON.stringify(12345)
 
-Tests["Parse stringified number"] = function
-  json = JSON.stringify(12345)
+    return typeof(JSON.parse(json)) == "number"
+  end function)
 
-  print(JSON.parse(json))
-end function
+  test("invalid json", function
+    json = "{""test"": 123, ""x"": [""bar""}"
 
-Tests["Parse stringified object and compare to original map"] = function
-  json = JSON.stringify(simpleTestObject)
-  parsedObj = JSON.parse(json)
+    return typeof(JSON.parse(json)) == "null"
+  end function)
+end function)
 
-  print(simpleTestObject == parsedObj)
-end function
+description("Use cases", function
+  test("Parse stringified object and compare to original map", function
+    json = JSON.stringify(simpleTestObject)
+    parsedObj = JSON.parse(json)
 
-Tests["Write/Read json file"] = function
-  rshell = get_shell("root", "test")
-  json = JSON.stringify(myTestObject)
+    return simpleTestObject == parsedObj
+  end function)
 
-  rshell.host_computer.touch("/root", "file.json")
-  testFile = rshell.host_computer.File("/root/file.json")
+  test("Write/Read json file", function
+    rshell = get_shell("root", "test")
+    json = JSON.stringify(myTestObject)
 
-  testFile.set_content(json)
+    rshell.host_computer.touch("/root", "file.json")
+    testFile = rshell.host_computer.File("/root/file.json")
 
-  parsedObj = JSON.parse(testFile.get_content)
+    testFile.set_content(json)
 
-  print(parsedObj)
-end function
+    parsedObj = JSON.parse(testFile.get_content)
 
-for item in Tests
-  print("Running: " + item.key)
-  item.value()
-end for
+    return typeof(parsedObj) == "map"
+  end function)
+end function)

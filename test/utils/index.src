@@ -1,0 +1,38 @@
+descriptionStack = []
+currentTest = null
+
+description = function(label, callback)
+  descriptionStack.push(label)
+  callback
+  descriptionStack.pop
+end function
+
+test = function(label, callback)
+  if (descriptionStack.len == 0) then
+    exit("test needs to be inside description")
+  end if
+
+  if (currentTest != null) then
+    exit("test cannot be inside test")
+  end if
+
+  currentTest = {
+    "label": label,
+    "callback": @callback
+  }
+  
+  isOk = callback
+
+  textColor = "<color=#00FF04>"
+  status = "Test was sucessful"
+
+  if (not isOk) then
+    textColor = "<color=#FF0011>"
+    status = "Test failed"
+  end if
+
+  print(textColor + "<b>" + descriptionStack.join(" ") + " " + label)
+  print(textColor + status)
+
+  currentTest = null
+end function
