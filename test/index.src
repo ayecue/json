@@ -9,6 +9,12 @@ description("Strinify", function
     return typeof(json) == "string"
   end function)
 
+  test("object with toJson", function
+    json = JSON.stringify(myTestMapWithToJson)
+
+    return json == myTestMapWithToJson.toJson
+  end function)
+
   test("list", function
     json = JSON.stringify(myTestList)
 
