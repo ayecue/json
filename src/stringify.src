@@ -1,4 +1,4 @@
-import_code("/root/stringify/handler.src":"./stringify/handler.src")
+import_code("./stringify/handler.src")
 
 stringify = function(obj)
   objType = typeof(@obj)

@@ -1,4 +1,4 @@
-import_code("/root/parse/parser.src":"./parse/parser.src")
+import_code("./parse/parser.src")
 
 parse = function(jsonStr)
   if (typeof(jsonStr) != "string") then

@@ -1,4 +1,4 @@
-import_code("/root/character.src":"../character.src")
+import_code("../character.src")
 
 StringifyHandler = {}
 

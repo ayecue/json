@@ -1,5 +1,5 @@
-import_code("/root/character.src":"../character.src")
-import_code("/root/parse/tokenizer.src":"./tokenizer.src")
+import_code("../character.src")
+import_code("./tokenizer.src")
 
 Parser = {}
 Parser.constructor = function(jsonStr)

@@ -1,6 +1,6 @@
-import_code("/root/json.src":"../src/json.src")
-import_code("/":"./fixtures/mocks.src")
-import_code("/":"./utils/index.src")
+import_code("../src/json.src")
+import_code("./fixtures/mocks.src")
+import_code("./utils/index.src")
 
 description("Strinify", function
   test("object", function
