@@ -1,5 +1,5 @@
 CHARACTER = {
-  "QUOTE": char(34),
+  // "QUOTE": char(34),
   "CURLY_BRACKETS_LEFT": char(123),
   "CURLY_BRACKETS_RIGHT": char(125),
   "SQUARE_BRACKETS_LEFT": char(91),
