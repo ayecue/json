@@ -1,22 +1,28 @@
 name: Release project
 
 on:
+  # Only run when commits get pushed to main
   push:
     branches: [ main ]
 
 jobs:
-  check:
+  release:
     runs-on: ubuntu-latest
     steps:
+    # Setup NodeJS
     - uses: actions/checkout@v3
     - name: Use Node.js 18.x
       uses: actions/setup-node@v3
       with:
         node-version: 18.x
+    # Install greybel globally
     - name: Install greybel
       run: npm install -g greybel-js@latest
+    # Run build command and create installer
     - name: Build
       run: greybel ./src/json.src -i
+    # Create release of those build files
+    # You going to need to go to https://github.com/<user>/<project>/settings/actions and enable read and write permissions for workflow
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
