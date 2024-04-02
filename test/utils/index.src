@@ -1,5 +1,6 @@
 descriptionStack = []
 currentTest = null
+didTestsFail = false
 
 description = function(label, callback)
   descriptionStack.push(label)
@@ -29,6 +30,7 @@ test = function(label, callback)
   if (not isOk) then
     textColor = "<color=#FF0011>"
     status = "Test failed"
+    outer.didTestsFail = true
   end if
 
   print(textColor + "<b>" + descriptionStack.join(" ") + ": " + label)
