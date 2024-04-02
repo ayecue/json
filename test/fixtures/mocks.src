@@ -54,7 +54,7 @@ myTestList = [
 myTestMapWithToJson = {
   "test": "foo",
   "bar": 123,
-  "toJson": function
-    return self.test + " - " + self.bar
-  end function
+  "toJson": function()
 }
+  return self.test + " - " + self.bar
+end function

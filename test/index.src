@@ -2,79 +2,79 @@ import_code("../src/json.src")
 import_code("./fixtures/mocks.src")
 import_code("./utils/index.src")
 
-description("Strinify", function
-  test("object", function
+description "Strinify", function
+  test "object", function
     json = JSON.stringify(myTestObject)
 
     return typeof(json) == "string"
-  end function)
+  end function
 
-  test("object with toJson", function
+  test "object with toJson", function
     json = JSON.stringify(myTestMapWithToJson)
 
     return json == myTestMapWithToJson.toJson
-  end function)
+  end function 
 
-  test("list", function
+  test "list", function
     json = JSON.stringify(myTestList)
 
     return typeof(json) == "string"
-  end function)
+  end function
 
-  test("string", function
+  test "string", function
     json = JSON.stringify("test")
 
     return typeof(json) == "string"
-  end function)
+  end function
 
-  test("number", function
+  test "number", function
     json = JSON.stringify(12345)
 
     return typeof(json) == "string"
-  end function)
-end function)
+  end function
+end function
 
-description("Parse", function
-  test("object", function
+description "Parse", function
+  test "object", function
     json = JSON.stringify(myTestObject)
 
     return typeof(JSON.parse(json)) == "map"
-  end function)
+  end function
 
-  test("list", function
+  test "list", function
     json = JSON.stringify(myTestList)
 
     return typeof(JSON.parse(json)) == "list"
-  end function)
+  end function
 
-  test("string", function
+  test "string", function
     json = JSON.stringify("test")
 
     return typeof(JSON.parse(json)) == "string"
-  end function)
+  end function
 
-  test("number", function
+  test "number", function
     json = JSON.stringify(12345)
 
     return typeof(JSON.parse(json)) == "number"
-  end function)
+  end function
 
-  test("invalid json", function
+  test "invalid json", function
     json = "{""test"": 123, ""x"": [""bar""}"
 
     return typeof(JSON.parse(json)) == "null"
-  end function)
-end function)
+  end function
+end function
 
-description("Use cases", function
-  test("Parse stringified object and compare to original map", function
+description "Use cases", function
+  test "Parse stringified object and compare to original map", function
     json = JSON.stringify(simpleTestObject)
     parsedObj = JSON.parse(json)
 
     return simpleTestObject == parsedObj
-  end function)
+  end function
 
-  test("Write/Read json file", function
+  test "Write/Read json file", function
     rshell = get_shell("root", "test")
     json = JSON.stringify(myTestObject)
 
@@ -86,5 +86,7 @@ description("Use cases", function
     parsedObj = JSON.parse(testFile.get_content)
 
     return typeof(parsedObj) == "map"
-  end function)
-end function)
+  end function
+end function
+
+if didTestsFail then testsFailed
