@@ -21,7 +21,7 @@ jobs:
     # Run build command, create installer and zip output
     - name: Build
       run: |
-        greybel ./src/json.src -i
+        greybel build ./src/json.src -i
         zip -r project.zip ./build
     # Create release of those build files
     # You going to need to go to https://github.com/<user>/<project>/settings/actions and enable read and write permissions for workflow
