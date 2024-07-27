@@ -20,7 +20,7 @@ jobs:
       run: npm install -g greybel-js@latest
     # Run tests
     - name: Test
-      run: greybel-execute ./test/index.src
+      run: greybel execute ./test/index.src
     # Run build
     - name: Build
-      run: greybel ./src/json.src
+      run: greybel build ./src/json.src
